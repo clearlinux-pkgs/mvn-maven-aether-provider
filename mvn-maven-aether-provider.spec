@@ -4,18 +4,21 @@
 #
 Name     : mvn-maven-aether-provider
 Version  : 3.0
-Release  : 3
+Release  : 4
 URL      : https://repo1.maven.org/maven2/org/apache/maven/maven-aether-provider/3.0/maven-aether-provider-3.0.jar
 Source0  : https://repo1.maven.org/maven2/org/apache/maven/maven-aether-provider/3.0/maven-aether-provider-3.0.jar
-Source1  : https://repo1.maven.org/maven2/org/apache/maven/maven-aether-provider/3.0.5/maven-aether-provider-3.0.5.jar
-Source2  : https://repo1.maven.org/maven2/org/apache/maven/maven-aether-provider/3.0.5/maven-aether-provider-3.0.5.pom
-Source3  : https://repo1.maven.org/maven2/org/apache/maven/maven-aether-provider/3.0/maven-aether-provider-3.0.pom
-Source4  : https://repo1.maven.org/maven2/org/apache/maven/maven-aether-provider/3.3.9/maven-aether-provider-3.3.9.jar
-Source5  : https://repo1.maven.org/maven2/org/apache/maven/maven-aether-provider/3.3.9/maven-aether-provider-3.3.9.pom
+Source1  : https://repo1.maven.org/maven2/org/apache/maven/maven-aether-provider/3.0.4/maven-aether-provider-3.0.4.jar
+Source2  : https://repo1.maven.org/maven2/org/apache/maven/maven-aether-provider/3.0.4/maven-aether-provider-3.0.4.pom
+Source3  : https://repo1.maven.org/maven2/org/apache/maven/maven-aether-provider/3.0.5/maven-aether-provider-3.0.5.jar
+Source4  : https://repo1.maven.org/maven2/org/apache/maven/maven-aether-provider/3.0.5/maven-aether-provider-3.0.5.pom
+Source5  : https://repo1.maven.org/maven2/org/apache/maven/maven-aether-provider/3.0/maven-aether-provider-3.0.pom
+Source6  : https://repo1.maven.org/maven2/org/apache/maven/maven-aether-provider/3.3.9/maven-aether-provider-3.3.9.jar
+Source7  : https://repo1.maven.org/maven2/org/apache/maven/maven-aether-provider/3.3.9/maven-aether-provider-3.3.9.pom
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Apache-2.0
 Requires: mvn-maven-aether-provider-data = %{version}-%{release}
+Requires: mvn-maven-aether-provider-license = %{version}-%{release}
 
 %description
 No detailed description available
@@ -28,28 +31,46 @@ Group: Data
 data components for the mvn-maven-aether-provider package.
 
 
+%package license
+Summary: license components for the mvn-maven-aether-provider package.
+Group: Default
+
+%description license
+license components for the mvn-maven-aether-provider package.
+
+
 %prep
+%setup -q -n META-INF
 
 %build
 
 %install
+mkdir -p %{buildroot}/usr/share/package-licenses/mvn-maven-aether-provider
+cp LICENSE %{buildroot}/usr/share/package-licenses/mvn-maven-aether-provider/LICENSE
+cp NOTICE %{buildroot}/usr/share/package-licenses/mvn-maven-aether-provider/NOTICE
 mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/apache/maven/maven-aether-provider/3.0
 cp %{SOURCE0} %{buildroot}/usr/share/java/.m2/repository/org/apache/maven/maven-aether-provider/3.0/maven-aether-provider-3.0.jar
 
-mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/apache/maven/maven-aether-provider/3.0.5
-cp %{SOURCE1} %{buildroot}/usr/share/java/.m2/repository/org/apache/maven/maven-aether-provider/3.0.5/maven-aether-provider-3.0.5.jar
+mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/apache/maven/maven-aether-provider/3.0.4
+cp %{SOURCE1} %{buildroot}/usr/share/java/.m2/repository/org/apache/maven/maven-aether-provider/3.0.4/maven-aether-provider-3.0.4.jar
+
+mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/apache/maven/maven-aether-provider/3.0.4
+cp %{SOURCE2} %{buildroot}/usr/share/java/.m2/repository/org/apache/maven/maven-aether-provider/3.0.4/maven-aether-provider-3.0.4.pom
 
 mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/apache/maven/maven-aether-provider/3.0.5
-cp %{SOURCE2} %{buildroot}/usr/share/java/.m2/repository/org/apache/maven/maven-aether-provider/3.0.5/maven-aether-provider-3.0.5.pom
+cp %{SOURCE3} %{buildroot}/usr/share/java/.m2/repository/org/apache/maven/maven-aether-provider/3.0.5/maven-aether-provider-3.0.5.jar
+
+mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/apache/maven/maven-aether-provider/3.0.5
+cp %{SOURCE4} %{buildroot}/usr/share/java/.m2/repository/org/apache/maven/maven-aether-provider/3.0.5/maven-aether-provider-3.0.5.pom
 
 mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/apache/maven/maven-aether-provider/3.0
-cp %{SOURCE3} %{buildroot}/usr/share/java/.m2/repository/org/apache/maven/maven-aether-provider/3.0/maven-aether-provider-3.0.pom
+cp %{SOURCE5} %{buildroot}/usr/share/java/.m2/repository/org/apache/maven/maven-aether-provider/3.0/maven-aether-provider-3.0.pom
 
 mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/apache/maven/maven-aether-provider/3.3.9
-cp %{SOURCE4} %{buildroot}/usr/share/java/.m2/repository/org/apache/maven/maven-aether-provider/3.3.9/maven-aether-provider-3.3.9.jar
+cp %{SOURCE6} %{buildroot}/usr/share/java/.m2/repository/org/apache/maven/maven-aether-provider/3.3.9/maven-aether-provider-3.3.9.jar
 
 mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/apache/maven/maven-aether-provider/3.3.9
-cp %{SOURCE5} %{buildroot}/usr/share/java/.m2/repository/org/apache/maven/maven-aether-provider/3.3.9/maven-aether-provider-3.3.9.pom
+cp %{SOURCE7} %{buildroot}/usr/share/java/.m2/repository/org/apache/maven/maven-aether-provider/3.3.9/maven-aether-provider-3.3.9.pom
 
 
 %files
@@ -57,9 +78,16 @@ cp %{SOURCE5} %{buildroot}/usr/share/java/.m2/repository/org/apache/maven/maven-
 
 %files data
 %defattr(-,root,root,-)
+/usr/share/java/.m2/repository/org/apache/maven/maven-aether-provider/3.0.4/maven-aether-provider-3.0.4.jar
+/usr/share/java/.m2/repository/org/apache/maven/maven-aether-provider/3.0.4/maven-aether-provider-3.0.4.pom
 /usr/share/java/.m2/repository/org/apache/maven/maven-aether-provider/3.0.5/maven-aether-provider-3.0.5.jar
 /usr/share/java/.m2/repository/org/apache/maven/maven-aether-provider/3.0.5/maven-aether-provider-3.0.5.pom
 /usr/share/java/.m2/repository/org/apache/maven/maven-aether-provider/3.0/maven-aether-provider-3.0.jar
 /usr/share/java/.m2/repository/org/apache/maven/maven-aether-provider/3.0/maven-aether-provider-3.0.pom
 /usr/share/java/.m2/repository/org/apache/maven/maven-aether-provider/3.3.9/maven-aether-provider-3.3.9.jar
 /usr/share/java/.m2/repository/org/apache/maven/maven-aether-provider/3.3.9/maven-aether-provider-3.3.9.pom
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/mvn-maven-aether-provider/LICENSE
+/usr/share/package-licenses/mvn-maven-aether-provider/NOTICE
